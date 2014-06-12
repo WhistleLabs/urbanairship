@@ -72,9 +72,13 @@ module Urbanairship
     end
 
     def schedule(scheduled_time, push_options = {}, name = nil)
+      version = push_options.delete(:version)
       body = {
-          :schedule => format_time(scheduled_time),
-          :push => parse_push_options(push_options).to_json
+          :schedule => {
+              :scheduled_time => format_time(scheduled_time)
+          },
+          :push => parse_push_options(push_options).to_json,
+          :version => version
       }
       body[:name] = name if name
 
