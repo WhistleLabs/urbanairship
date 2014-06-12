@@ -71,6 +71,16 @@ module Urbanairship
       do_request(:post, "/api/push/broadcast/", :body => body, :authenticate_with => :master_secret)
     end
 
+    def schedule(scheduled_time, push_options = {}, name = nil)
+      body = {
+          :schedule => format_time(scheduled_time),
+          :push => parse_push_options(push_options).to_json
+      }
+      body[:name] = name if name
+
+      do_request(:post, "/api/schedules", :body => body, :authenticate_with => :master_secret)
+    end
+
     def feedback(time)
       do_request(:get, "/api/device_tokens/feedback/?since=#{format_time(time)}", :authenticate_with => :master_secret)
     end
