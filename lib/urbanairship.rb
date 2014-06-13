@@ -82,7 +82,7 @@ module Urbanairship
       }
       body[:name] = name if name
 
-      do_request(:post, "/api/schedules", :body => body, :authenticate_with => :master_secret)
+      do_request(:post, "/api/schedules", :body => body.to_json, :authenticate_with => :master_secret)
     end
 
     def feedback(time)
