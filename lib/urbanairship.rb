@@ -77,7 +77,7 @@ module Urbanairship
           :schedule => {
               :scheduled_time => format_time(scheduled_time)
           },
-          :push => parse_push_options(push_options).to_json,
+          :push => parse_push_options(push_options),
       }
       body[:name] = name if name
 
