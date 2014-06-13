@@ -78,11 +78,10 @@ module Urbanairship
               :scheduled_time => format_time(scheduled_time)
           },
           :push => parse_push_options(push_options).to_json,
-          :version => version
       }
       body[:name] = name if name
 
-      do_request(:post, "/api/schedules", :body => body.to_json, :authenticate_with => :master_secret)
+      do_request(:post, "/api/schedules", :body => body.to_json, :authenticate_with => :master_secret, :version => version)
     end
 
     def feedback(time)
